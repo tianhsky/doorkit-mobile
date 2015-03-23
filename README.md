@@ -10,7 +10,7 @@ As a component of doorkit, connect to home through [doorkit-server](https://gith
 ## See Also
 
 * [doorkit-broker](https://github.com/tianhsky/doorkit-broker), for raspberry-pi broker component.
-* [doorkit-mobile](https://github.com/tianhsky/doorkit-mobile), for mobile client component.
+* [doorkit-server](https://github.com/tianhsky/doorkit-server), for server component.
 
 ## Author
 
