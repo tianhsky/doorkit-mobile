@@ -4,7 +4,7 @@ As a component of doorkit, connect to home through [doorkit-server](https://gith
 
 ## Screenshots
 
-![Logoin](www/img/screenshots/01-login.png)
+![Login](www/img/screenshots/01-login.png)
 ![Door control](www/img/screenshots/02-door-control.png)
 
 ## See Also
