@@ -1,0 +1,13 @@
+.float-left{
+	float: left;
+}
+.float-right{
+	float: right;
+}
+
+.logo {
+    display: block;
+    position: relative;
+    width: 65%;
+    margin: 0 auto;
+}
