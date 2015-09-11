@@ -28,19 +28,23 @@
 		<script src="lib/bower_components/angular-truncate/src/truncate.js"></script>
 		<script src="lib/bower_components/angular-moment/angular-moment.min.js"></script>
 
-		<!-- register back btn and ads -->
+		<!-- register back btn -->
 		<script src="js/init.js"></script>
 
-		<!-- ng-app libs -->
+		<!-- ng-app -->
 		<script src="js/ng-app/app.js"></script>
-		<script src="js/ng-app/factories/socket.js"></script>
+		<script src="js/ng-app/factories/store.js"></script>
+		<script src="js/ng-app/factories/dkapi.js"></script>
+		<script src="js/ng-app/services/dkclient.js"></script>
+		<script src="js/ng-app/services/door.js"></script>
 		<script src="js/ng-app/directives/ngEnter.js"></script>
+
 		<script src="js/ng-app/controllers/header.js"></script>
 		<script src="js/ng-app/controllers/connect.js"></script>
 		<script src="js/ng-app/controllers/dashboard.js"></script>
 		<script src="js/ng-app/controllers/dashboard.doors.js"></script>
 	</head>
-	<body ng-app="doorkit">
+	<body ng-app="DoorKit">
 		<div ui-view>
 		</div>
 	</body>

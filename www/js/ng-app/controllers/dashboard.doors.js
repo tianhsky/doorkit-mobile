@@ -1,39 +1,15 @@
-ang.controller('DoorsCtrl', ['$scope', 'socket',
-  function($scope, socket) {
+angular.module('DoorKit').controller('DoorsCtrl', ['$scope', '$dkapi', '$door',
+  function($scope, $dkapi, $door) {
 
-    $scope.door = {
-      unlocked: false
-    };
+    $scope.door = $door.getObject();
 
     $scope.toggleLock = function() {
-      var broker_id = localStorage.getItem('broker_id');
-      if ($scope.door.unlocked) {
-        socket.emit('instruction', {
-          object_type: 'door',
-          action: 'lock'
-        });
-      } else {
-        socket.emit('instruction', {
-          object_type: 'door',
-          action: 'unlock'
-        });
-      }
+      $door.toggleLock();
     }
 
-    var handleNotification = function(data) {
-      var object_type = data.object_type;
-      var action = data.action;
-      if (object_type == 'door') {
-        if (action == 'unlocked') {
-          $scope.door.unlocked = true;
-        } else {
-          $scope.door.unlocked = false;
-        }
-      }
-    }
-    socket.on('notification', handleNotification);
+    $dkapi.on('notification', $door.handleNotification);
     $scope.$on('$destroy', function() {
-      socket.removeListener('notification', handleNotification);
+      $dkapi.removeListener('notification', $door.handleNotification);
     });
 
   }

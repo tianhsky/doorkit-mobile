@@ -1,4 +1,4 @@
-ang.controller('DashboardCtrl', ['$scope',
+angular.module('DoorKit').controller('DashboardCtrl', ['$scope',
   function($scope) {
 
   }

@@ -1,9 +1,9 @@
-ang.controller('HeaderCtrl', ['$scope', '$state',
-  function($scope, $state) {
+angular.module('DoorKit').controller('HeaderCtrl', ['$scope', '$state', '$dkclient',
+  function($scope, $state, $dkclient) {
     $scope.title = $state.current.data.title;
     $scope.showBack = $state.current.data.showBack;
 
-    if (localStorage.getItem('broker_id')) {
+    if ($dkclient.isValid()) {
       $scope.showSignout = true;
     } else {
       $scope.showSignout = false;
@@ -14,7 +14,7 @@ ang.controller('HeaderCtrl', ['$scope', '$state',
     }
 
     $scope.signOut = function() {
-      localStorage.removeItem('broker_id');
+      $dkclient.signOut();
       location.href = "#/"
     }
 

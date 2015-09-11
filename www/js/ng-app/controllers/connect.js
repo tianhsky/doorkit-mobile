@@ -1,19 +1,17 @@
-ang.controller('ConnectCtrl', ['$scope', 'socket',
-  function($scope, socket) {
+angular.module('DoorKit').controller('ConnectCtrl', ['$scope', '$dkapi', '$dkclient',
+  function($scope, $dkapi, $dkclient) {
 
-    if(localStorage.getItem('broker_id')){
+    if($dkclient.isValid()){
       location.href = "#/dashboard";
     }
 
-    $scope.doorkit = {
-      broker_id: localStorage.getItem('broker_id')
-    };
+    $scope.doorkit = $dkclient.getObject();
 
     $scope.connectBroker = function() {
       if ($scope.doorkit.broker_id) {
-        localStorage.setItem('broker_id', $scope.doorkit.broker_id);
-        socket.connectRoom();
-        location.href = "#/dashboard"
+        $dkclient.setBrokerID($scope.doorkit.broker_id);
+        $dkapi.connectRoom();
+        location.href = "#/dashboard";
       }
       else{
         alert("Please enter access code");

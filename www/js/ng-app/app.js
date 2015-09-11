@@ -1,4 +1,4 @@
-ang = angular.module('doorkit', [
+angular.module('DoorKit', [
   'ionic',
   'ngAnimate',
   'ui.router',
