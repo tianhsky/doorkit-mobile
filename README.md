@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tianhsky/doorkit-mobile.svg?branch=master)](https://travis-ci.org/tianhsky/doorkit-mobile)
+
 # doorkit-mobile
 
 As a component of doorkit, connect to home through [doorkit-server](https://github.com/tianhsky/doorkit-server), and emit instructions to [doorkit-broker](https://github.com/tianhsky/doorkit-broker).
