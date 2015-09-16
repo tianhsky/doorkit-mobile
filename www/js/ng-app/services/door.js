@@ -1,39 +1,62 @@
 angular.module('DoorKit').service('$door', ['$dkapi',
-  function($dkapi){
+  function($dkapi) {
+    var self = this;
     var _data = {
       object_type: 'door',
-      unlocked: false
+      status: 'locked'
     }
-    
-    this.toggleLock = function(){
-      if (_data.unlocked) {
-        $dkapi.emit('instruction', {
-          object_type: _data.object_type,
-          action: 'lock'
-        });
+
+    self.toggleLock = function() {
+      if (self.isUnLocked()) {
+        self.lock();
       } else {
-        $dkapi.emit('instruction', {
-          object_type: _data.object_type,
-          action: 'unlock'
-        });
+        self.unlock();
       }
     }
 
-    this.handleNotification = function(data){
+    self.lock = function() {
+      $dkapi.emit('instruction', {
+        object_type: _data.object_type,
+        action: 'lock'
+      });
+    }
+
+    self.unlock = function() {
+      $dkapi.emit('instruction', {
+        object_type: _data.object_type,
+        action: 'unlock'
+      });
+    }
+
+    self.handleNotification = function(data) {
       var object_type = data.object_type;
-      var action = data.action;
+      var status = data.status;
       if (object_type == 'door') {
-        if (action == 'unlocked') {
-          _data.unlocked = true;
+        if (status == 'unlocked') {
+          self.setStatus('unlocked');
+        } else if (status == 'locked') {
+          self.setStatus('locked');
         } else {
-          _data.unlocked = false;
+          // unknown status
         }
       }
     }
 
-    this.getObject = function(){
+    self.getObject = function() {
       return _data;
     }
 
-  }]
-);
+    self.setStatus = function(status) {
+      _data.status = status;
+    }
+
+    self.isLocked = function() {
+      return _data.status == 'locked';
+    }
+
+    self.isUnLocked = function() {
+      return _data.status == 'unlocked';
+    }
+
+  }
+]);

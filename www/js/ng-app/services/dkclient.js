@@ -1,26 +1,31 @@
 angular.module('DoorKit').service('$dkclient', ['$store',
   function($store){
+    var self = this;
     var _brokerID = $store.get('broker_id');
     var _clientType = 'user';
-    
-    this.setBrokerID = function(BrokerID){
-      _brokerID = BrokerID;
-      $store.set('broker_id', BrokerID);
+
+    self.setBrokerID = function(brokerID){
+      _brokerID = brokerID;
+      $store.set('broker_id', brokerID);
     }
 
-    this.getObject = function(){
+    self.getObject = function(){
       return {
         broker_id: _brokerID,
         client_type: _clientType
       }
     }
 
-    this.isValid = function(){
-      return (_brokerID && _clientType)
+    self.isValid = function(){
+      return (_brokerID && _brokerID!='' && _clientType && _clientType!='' ? true : false);
     }
 
-    this.signOut = function(){
-      this.setBrokerID(null);
+    self.signIn = function(brokerID){
+      self.setBrokerID(brokerID);
+    }
+
+    self.signOut = function(){
+      self.setBrokerID(null);
     }
 
   }]

@@ -2,9 +2,12 @@ angular.module('DoorKit', [
   'ionic',
   'ngAnimate',
   'ui.router',
-  'truncate'
-]).config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$ionicConfigProvider',
-  function($stateProvider, $urlRouterProvider, $locationProvider, $ionicConfigProvider) {
+  'truncate',
+  'underscore',
+  'store',
+  'io'
+]).config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider',
+  function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
     $ionicConfigProvider.tabs.position('bottom');
     $stateProvider
       .state('home', {

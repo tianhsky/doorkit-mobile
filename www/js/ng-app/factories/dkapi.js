@@ -1,5 +1,5 @@
-angular.module('DoorKit').factory('$dkapi', ['$rootScope', '$dkclient',
-  function($rootScope, $dkclient) {
+angular.module('DoorKit').factory('$dkapi', ['$rootScope', '$dkclient', 'io',
+  function($rootScope, $dkclient, io) {
 
     // websocket connection to cloud server
     var socket = io.connect('https://doorkit.herokuapp.com');

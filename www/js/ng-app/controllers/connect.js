@@ -1,17 +1,20 @@
-angular.module('DoorKit').controller('ConnectCtrl', ['$scope', '$dkapi', '$dkclient',
-  function($scope, $dkapi, $dkclient) {
+angular.module('DoorKit').controller('ConnectCtrl', [
+  '$scope', '$dkapi', '$dkclient', '$location',
+  function($scope, $dkapi, $dkclient, $location) {
 
-    if($dkclient.isValid()){
-      location.href = "#/dashboard";
+    $scope.doorkit = {
+      broker_id: null
     }
 
-    $scope.doorkit = $dkclient.getObject();
+    if ($dkclient.isValid()) {
+      $location.path("#/dashboard");
+    }
 
     $scope.connectBroker = function() {
-      if ($scope.doorkit.broker_id) {
-        $dkclient.setBrokerID($scope.doorkit.broker_id);
+      $dkclient.setBrokerID($scope.doorkit.broker_id);
+      if($dkclient.isValid()){
         $dkapi.connectRoom();
-        location.href = "#/dashboard";
+        $location.path("#/dashboard");
       }
       else{
         alert("Please enter access code");

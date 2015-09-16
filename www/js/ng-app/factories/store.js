@@ -1,4 +1,5 @@
-angular.module('DoorKit').factory('$store', ['$window', 
+angular.module('store',[])
+angular.module('store').factory('$store', ['$window',
   function($window) {
     return {
       set: function(key, value) {
